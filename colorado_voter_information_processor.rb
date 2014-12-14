@@ -1,8 +1,10 @@
 require 'logger'
+require 'optparse'
 
 class ColoradVoterInformationProcessor
   def initialize
     create_logger
+    parse_cli_options
   end
 
   NUMBER_OF_FILES = 11
@@ -19,6 +21,21 @@ private
   def create_logger
     @logger       = Logger.new(STDERR)
     @logger.level = Logger::INFO
+  end
+
+  def parse_cli_options
+    @options = {}
+    OptionParser.new do |opts|
+      opts.banner = "Usage: ruby colorado_voter_information_processor.rb [options]"
+
+      opts.on('-d', '--skip-zip-download', "Skip downloading the zip files") do |szd|
+        @options[:skip_zip_downloads] = szd
+      end
+
+      opts.on('-e', '--skip-zip-delete', "Skip deleting the zip files") do |sze|
+        @options[:skip_zip_delete] = sze
+      end
+    end.parse!
   end
 
   def each_file(&block)
