@@ -32,8 +32,8 @@ private
         @options[:skip_zip_downloads] = szd
       end
 
-      opts.on('-e', '--skip-zip-delete', "Skip deleting the zip files") do |sze|
-        @options[:skip_zip_delete] = sze
+      opts.on('-e', '--skip-zip-deletes', "Skip deleting the zip files") do |sze|
+        @options[:skip_zip_deletes] = sze
       end
     end.parse!
   end
@@ -71,7 +71,7 @@ private
   end
 
   def delete_zip_files
-    if @options[:skip_zip_delete]
+    if @options[:skip_zip_deletes]
       logger.info "Skipping deleting all zip files in the data set."
 
     else
