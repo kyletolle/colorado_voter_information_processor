@@ -32,6 +32,10 @@ private
         @options[:skip_zip_downloads] = szd
       end
 
+      opts.on('-x', '--skip-zip-extracts', "Skip extracting the zip files") do |szx|
+        @options[:skip_zip_extracts] = szx
+      end
+
       opts.on('-e', '--skip-zip-deletes', "Skip deleting the zip files") do |sze|
         @options[:skip_zip_deletes] = sze
       end
@@ -63,10 +67,15 @@ private
   end
 
   def extract_zip_files
-    logger.info "Extracting all zip files in the data set to txt files..."
+    if @options[:skip_zip_extracts]
+      logger.info "Skipping extracting all zip files in the data set."
 
-    each_file do |file_number|
-      `unzip -p #{local_zip_file(file_number)} > #{local_txt_file(file_number)}`
+    else
+      logger.info "Extracting all zip files in the data set to txt files..."
+
+      each_file do |file_number|
+        `unzip -p #{local_zip_file(file_number)} > #{local_txt_file(file_number)}`
+      end
     end
   end
 
