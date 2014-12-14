@@ -28,7 +28,7 @@ private
     OptionParser.new do |opts|
       opts.banner = "Usage: ruby colorado_voter_information_processor.rb [options]"
 
-      opts.on('-d', '--skip-zip-download', "Skip downloading the zip files") do |szd|
+      opts.on('-d', '--skip-zip-downloads', "Skip downloading the zip files") do |szd|
         @options[:skip_zip_downloads] = szd
       end
 
