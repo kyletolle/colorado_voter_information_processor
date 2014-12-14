@@ -2,8 +2,7 @@ require 'logger'
 
 class ColoradVoterInformationProcessor
   def initialize
-    @logger       = Logger.new(STDERR)
-    @logger.level = Logger::INFO
+    create_logger
   end
 
   NUMBER_OF_FILES = 11
@@ -16,6 +15,11 @@ class ColoradVoterInformationProcessor
 
 private
   attr_reader :logger
+
+  def create_logger
+    @logger       = Logger.new(STDERR)
+    @logger.level = Logger::INFO
+  end
 
   def each_file(&block)
     NUMBER_OF_FILES.times do |i|
