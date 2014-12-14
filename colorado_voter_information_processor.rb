@@ -1,4 +1,11 @@
+require 'logger'
+
 class ColoradVoterInformationProcessor
+  def initialize
+    @logger       = Logger.new(STDERR)
+    @logger.level = Logger::INFO
+  end
+
   NUMBER_OF_FILES = 11
 
   def process
@@ -8,6 +15,8 @@ class ColoradVoterInformationProcessor
   end
 
 private
+  attr_reader :logger
+
   def each_file(&block)
     NUMBER_OF_FILES.times do |i|
       file_number = i + 1
@@ -16,7 +25,7 @@ private
   end
 
   def download_zip_files
-    puts "Downloading all zip files in the data set..."
+    logger.info "Downloading all zip files in the data set..."
 
     each_file do |file_number|
       `wget #{remote_zip_file(file_number)} -O #{local_zip_file(file_number)}`
@@ -28,7 +37,7 @@ private
   end
 
   def extract_zip_files
-    puts "Extracting all zip files in the data set to txt files..."
+    logger.info "Extracting all zip files in the data set to txt files..."
 
     each_file do |file_number|
       `unzip -p #{local_zip_file(file_number)} > #{local_txt_file(file_number)}`
@@ -36,7 +45,7 @@ private
   end
 
   def delete_zip_files
-    puts "Deleting all zip files in the data set..."
+    logger.info "Deleting all zip files in the data set..."
 
     each_file do |file_number|
       `rm #{local_zip_file(file_number)}`
