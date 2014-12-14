@@ -28,7 +28,7 @@ private
     logger.info "Downloading all zip files in the data set..."
 
     each_file do |file_number|
-      `wget #{remote_zip_file(file_number)} -O #{local_zip_file(file_number)}`
+      `wget #{remote_zip_file(file_number)} -nv -O #{local_zip_file(file_number)}`
     end
   end
 
