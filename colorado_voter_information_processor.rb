@@ -46,10 +46,15 @@ private
   end
 
   def download_zip_files
-    logger.info "Downloading all zip files in the data set..."
+    if @options[:skip_zip_downloads]
+      logger.info "Skipping downloading all zip files in the data set."
 
-    each_file do |file_number|
-      `wget #{remote_zip_file(file_number)} -nv -O #{local_zip_file(file_number)}`
+    else
+      logger.info "Downloading all zip files in the data set..."
+
+      each_file do |file_number|
+        `wget #{remote_zip_file(file_number)} -nv -O #{local_zip_file(file_number)}`
+      end
     end
   end
 
@@ -66,10 +71,15 @@ private
   end
 
   def delete_zip_files
-    logger.info "Deleting all zip files in the data set..."
+    if @options[:skip_zip_delete]
+      logger.info "Skipping deleting all zip files in the data set."
 
-    each_file do |file_number|
-      `rm #{local_zip_file(file_number)}`
+    else
+      logger.info "Deleting all zip files in the data set..."
+
+      each_file do |file_number|
+        `rm #{local_zip_file(file_number)}`
+      end
     end
   end
 
