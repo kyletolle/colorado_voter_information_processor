@@ -11,3 +11,12 @@ single, usable dataset.
 ruby colorado_voter_information_processor.rb [options]
 ```
 
+### Options
+
+Several options are available to make running this script easier.
+
+- `-d` - `--skip-zip-downloads`: Skip downloading the zip files from the web,
+  because they are already saved locally. Useful with the `-e` option.
+- `-e` - `--skip-zip-deletes`: Skip deleting the zip files, because you want to
+  keep them saved locally. Useful with the `-d` option.
+
