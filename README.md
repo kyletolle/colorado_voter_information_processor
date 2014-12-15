@@ -7,6 +7,9 @@ single, usable dataset.
 
 ## Usage
 
+*Note*: Due to the amount of information in this dataset, you'll need a few
+gigabytes of free space to download, extract, and process the data.
+
 ```
 ruby colorado_voter_information_processor.rb [options]
 ```
