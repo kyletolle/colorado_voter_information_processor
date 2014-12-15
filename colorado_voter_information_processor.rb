@@ -21,7 +21,7 @@ class ColoradVoterInformationProcessor
 
   def create_county_dataset
     logger.info "Creating a dataset for the voters and their counties..."
-    File.open(county_dataset_csv, 'w') do |file|
+    File.open(county_dataset, 'w') do |file|
       # The Dec 1, 2014 txt files actually contain | delimited files not ,
       # delimited. And we set the quote char to one that's not used in the
       # data set so it can be read in properly.
