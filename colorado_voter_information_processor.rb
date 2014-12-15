@@ -1,5 +1,6 @@
 require 'logger'
 require 'optparse'
+require 'csv'
 
 class ColoradVoterInformationProcessor
   def initialize
@@ -13,9 +14,25 @@ class ColoradVoterInformationProcessor
     download_zip_files
     extract_zip_files
     delete_zip_files
-    combine_txt_files_to_csv_file
+    combine_txt_files_into_one
 
     self
+  end
+
+  def create_county_dataset
+    logger.info "Creating a dataset for the voters and their counties..."
+    File.open(county_dataset_csv, 'w') do |file|
+      # The Dec 1, 2014 txt files actually contain | delimited files not ,
+      # delimited. And we set the quote char to one that's not used in the
+      # data set so it can be read in properly.
+      CSV.foreach(entire_dataset, {col_sep: '|', quote_char: '^'}) do |row|
+        # We only want a subset of the data in the files.
+        only_interesting_columns = row.values_at(0,1,2,7,29,30,34)
+        csv_string               = only_interesting_columns.to_csv
+
+        file << csv_string
+      end
+    end
   end
 
 private
@@ -113,7 +130,7 @@ private
     "part#{file_number}.txt"
   end
 
-  def combine_txt_files_to_csv_file
+  def combine_txt_files_into_one
     if @options[:skip_combining_files]
       logger.info "Skipping combining the individual txt files into a single csv file."
 
@@ -126,14 +143,19 @@ private
 
       files_string = files_list.join(' ')
 
-      `cat #{files_string} > #{entire_dataset_csv}`
+      `cat #{files_string} > #{entire_dataset}`
     end
   end
 
-  def entire_dataset_csv
-    'entire_dataset.csv'
+  def entire_dataset
+    'entire_dataset.txt'
+  end
+
+  def county_dataset
+    "county_dataset.csv"
   end
 end
 
 processor = ColoradVoterInformationProcessor.new.prepare_dataset
 
+processor.create_county_dataset
