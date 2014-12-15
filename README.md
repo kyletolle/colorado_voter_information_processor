@@ -4,12 +4,10 @@ The list of Colorado voters for 2014 is [available for download](http://colorado
 
 This script takes care of downloading the files and combining them into a
 single, usable dataset. You can then take this and extract a subset of the
-data for analysis. Right now, it will also generate a "county" subset.
+data for analysis. Right now, it will also generate a `county_dataset.csv`
+with only a portion of the columns.
 
 ## Usage
-
-**Note**: Due to the amount of information in this dataset, you'll need a few
-gigabytes of free space to download, extract, and process the data.
 
 ```
 ruby colorado_voter_information_processor.rb [options]
@@ -37,6 +35,15 @@ that data.
 ```
 ruby colorado_voter_information_processor.rb -d -x -e -c -t
 ```
+
+## Notes
+
+- Due to the amount of information in this dataset, you'll need a few
+  gigabytes of free space to download, extract, and process the data.
+- The data sets linked to above change formats with each release. As a result,
+  this tool currently only supports the Dec 1, 2014 data set: `.zip` files
+  containing pipe-separated values where only the first `.txt` has a header
+  row.
 
 ## License
 
