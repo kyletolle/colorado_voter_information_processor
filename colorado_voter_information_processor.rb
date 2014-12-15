@@ -48,19 +48,19 @@ private
     OptionParser.new do |opts|
       opts.banner = "Usage: ruby colorado_voter_information_processor.rb [options]"
 
-      opts.on('-d', '--skip-zip-downloads', "Skip downloading the zip files") do |szd|
+      opts.on('-d', '--skip-zip-downloads', "Skip downloading zip files") do |szd|
         @options[:skip_zip_downloads] = szd
       end
 
-      opts.on('-x', '--skip-zip-extracts', "Skip extracting the zip files") do |szx|
+      opts.on('-x', '--skip-zip-extracts', "Skip extracting zip files") do |szx|
         @options[:skip_zip_extracts] = szx
       end
 
-      opts.on('-e', '--skip-zip-deletes', "Skip deleting the zip files") do |sze|
+      opts.on('-e', '--skip-zip-deletes', "Skip deleting zip files") do |sze|
         @options[:skip_zip_deletes] = sze
       end
 
-      opts.on('-c', '--skip-combining-files', "Skip combining the individual txt files into a single csv file") do |scf|
+      opts.on('-c', '--skip-combining-files', "Skip combining individual txt files into a single csv file") do |scf|
         @options[:skip_combining_files] = scf
       end
     end.parse!

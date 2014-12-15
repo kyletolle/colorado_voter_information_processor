@@ -18,11 +18,11 @@ ruby colorado_voter_information_processor.rb [options]
 
 Several options are available to make running this script easier.
 
-- `-d`, `--skip-zip-downloads`: Skip downloading the zip files from the web,
+- `-d`, `--skip-zip-downloads`: Skip downloading zip files from the web,
   because they are already saved locally. Useful with the `-e` option.
-- `-x`, `--skip-zip-extracts`: Skip extracting the zip files, because they
-  have already been extracted.
-- `-e`, `--skip-zip-deletes`: Skip deleting the zip files, because you want to
+- `-x`, `--skip-zip-extracts`: Skip extracting zip files, because they have
+  already been extracted.
+- `-e`, `--skip-zip-deletes`: Skip deleting zip files, because you want to
   keep them saved locally. Useful with the `-d` option.
 - `-c`, `--skip-combining-files`: Skip combining the individual txt files into
   a single csv file.
