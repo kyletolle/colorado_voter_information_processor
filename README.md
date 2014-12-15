@@ -24,3 +24,7 @@ Several options are available to make running this script easier.
 - `-c`, `--skip-combining-files`: Skip combining the individual txt files into
   a single csv file.
 
+## License
+
+MIT
+
