@@ -126,11 +126,11 @@ private
 
       files_string = files_list.join(' ')
 
-      `cat #{files_string} > #{local_csv_file}`
+      `cat #{files_string} > #{entire_dataset_csv}`
     end
   end
 
-  def local_csv_file
+  def entire_dataset_csv
     'entire_dataset.csv'
   end
 end
