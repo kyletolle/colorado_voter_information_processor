@@ -28,7 +28,9 @@ class ColoradVoterInformationProcessor
       # data set so it can be read in properly.
       CSV.foreach(entire_dataset, {col_sep: '|', quote_char: '^'}) do |row|
         # We only want a subset of the data in the files.
-        only_interesting_columns = row.values_at(0,1,2,7,29,30,34)
+        # Columns: 0 => VOTER_ID, 1 => COUNTY_CODE, 2 => COUNTY, 7 => VOTER_NAME,
+        # 29 => BIRTH_YEAR, 30 => GENDER, 34 => PARTY
+        only_interesting_columns = row.values_at(0,1,2,29,30,34)
         csv_string               = only_interesting_columns.to_csv
 
         file << csv_string
