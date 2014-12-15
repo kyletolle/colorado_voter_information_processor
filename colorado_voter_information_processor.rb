@@ -53,7 +53,7 @@ private
     file_numbers = NUMBER_OF_FILES.times.map{|i| i+1}
 
     if block
-      file_number_list.each do |file_number|
+      file_numbers.each do |file_number|
         block.call file_number
       end
 
