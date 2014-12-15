@@ -26,6 +26,7 @@ Several options are available to make running this script easier.
   keep them saved locally. Useful with the `-d` option.
 - `-c`, `--skip-combining-files`: Skip combining the individual txt files into
   a single csv file.
+- `-t`, `--skip-txt-deletes`: Skip deleting part#.txt files.
 
 ## License
 
