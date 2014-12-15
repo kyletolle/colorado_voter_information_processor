@@ -9,11 +9,13 @@ class ColoradVoterInformationProcessor
 
   NUMBER_OF_FILES = 11
 
-  def process
+  def prepare_dataset
     download_zip_files
     extract_zip_files
     delete_zip_files
     combine_txt_files_to_csv_file
+
+    self
   end
 
 private
@@ -133,5 +135,5 @@ private
   end
 end
 
-ColoradVoterInformationProcessor.new.process
+processor = ColoradVoterInformationProcessor.new.prepare_dataset
 
