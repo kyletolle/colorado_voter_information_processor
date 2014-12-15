@@ -43,9 +43,15 @@ private
   end
 
   def each_file(&block)
-    NUMBER_OF_FILES.times do |i|
-      file_number = i + 1
-      yield file_number
+    file_numbers = NUMBER_OF_FILES.times.map{|i| i+1}
+
+    if block
+      file_number_list.each do |file_number|
+        block.call file_number
+      end
+
+    else
+      file_numbers
     end
   end
 
