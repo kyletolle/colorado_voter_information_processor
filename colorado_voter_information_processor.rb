@@ -13,6 +13,7 @@ class ColoradVoterInformationProcessor
     download_zip_files
     extract_zip_files
     delete_zip_files
+    combine_txt_files_to_csv_file
   end
 
 private
@@ -38,6 +39,10 @@ private
 
       opts.on('-e', '--skip-zip-deletes', "Skip deleting the zip files") do |sze|
         @options[:skip_zip_deletes] = sze
+      end
+
+      opts.on('-c', '--skip-combining-files', "Skip combining the individual txt files into a single csv file") do |scf|
+        @options[:skip_combining_files] = scf
       end
     end.parse!
   end
@@ -104,6 +109,27 @@ private
 
   def local_txt_file(file_number)
     "part#{file_number}.txt"
+  end
+
+  def combine_txt_files_to_csv_file
+    if @options[:skip_combining_files]
+      logger.info "Skipping combining the individual txt files into a single csv file."
+
+    else
+      logger.info "Combining the individual txt files into a single csv file..."
+
+      files_list = each_file.map do |file_number|
+        "part#{file_number}.txt"
+      end
+
+      files_string = files_list.join(' ')
+
+      `cat #{files_string} > #{local_csv_file}`
+    end
+  end
+
+  def local_csv_file
+    'entire_dataset.csv'
   end
 end
 

@@ -21,4 +21,6 @@ Several options are available to make running this script easier.
   have already been extracted.
 - `-e`, `--skip-zip-deletes`: Skip deleting the zip files, because you want to
   keep them saved locally. Useful with the `-d` option.
+- `-c`, `--skip-combining-files`: Skip combining the individual txt files into
+  a single csv file.
 
